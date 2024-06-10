@@ -1,0 +1,29 @@
+{% extends "menu/layout.html" %}
+{% block carrusel %}
+{% endblock  %}
+{% block content %}
+
+<div class="container-fluid d-flex flex-column align-items-center mt-4" style="min-height: 100vh;">
+    <h2 class="text-center mt-5">Menú GastroWeb</h2>
+    <div class="row w-100 mt-4">
+        {% for menu in menu %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 d-flex justify-content-center justify-content-md-start">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ menu.imagen }}" class="card-img-top" alt="{{ menu.nombre }}">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ menu.nombre }}</h5>
+                    <p class="card-text">$ {{ menu.precio }}</p>
+                    <form method="POST" action="{% url 'agregar' menu.id %}">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <input type="number" name="cantidad" class="form-control" value="1" min="1">
+                            <button type="submit" class="btn btn-primary">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

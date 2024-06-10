@@ -1,0 +1,14 @@
+{% extends "menu/layout.html" %}
+
+
+{% block content %}
+{% load static %}
+
+<div class="container-fluid p-0 mt-4"> 
+    <div class="text-center bg-success text-white py-3">
+        <h3>Bienvenido a GastroWeb</h3>
+    </div>
+    {% include "../partials/carrusel.html" %}
+</div>
+
+{% endblock %}

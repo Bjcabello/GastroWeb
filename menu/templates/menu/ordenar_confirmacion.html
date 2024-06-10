@@ -1,0 +1,33 @@
+{% extends "menu/layout.html" %}
+
+{% block content %}
+<h2 class="text-center mt-5">Factura</h2>
+<div class="container mt-4">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in ordenar.items.all %}
+                <tr>
+                    <td>{{ item.menu_item.nombre }}</td>
+                    <td>$ {{ item.menu_item.precio }}</td>
+                    <td>{{ item.cantidad }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center mt-4">
+        <h3>Total a pagar: $ {{ total }}</h3>
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'generar_pdf' ordenar.id %}" class="btn btn-primary">Imprimir en PDF</a>
+    </div>
+</div>
+{% endblock %}
